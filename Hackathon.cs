@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace SampleConApp
 {
-    internal class StringEncoder
+    internal static class StringEncoder
     {
         private const string key = "the quick and brown fox jumps over the lazy dog";
         private static Dictionary<char, int> keyValuePairs = new Dictionary<char, int>();
@@ -18,7 +18,7 @@ namespace SampleConApp
         private static string Encoder(string text)
         {
             DictionaryMaker();
-            if (text?.Length == 0)
+            if (text.Length == 0)
             {
                 throw new ArgumentException("Inavlid argument length");
             }
@@ -69,9 +69,14 @@ namespace SampleConApp
                     place = 0;
                     continue;
                 }
-                if (keyValuePairs.ContainsKey(c)) { place++; continue; }
-                keyValuePairs[c] = word * 10 + place;
-                place++;
+                if (keyValuePairs.ContainsKey(c)) { place++; }
+                else
+                {
+
+
+                    keyValuePairs[c] = word * 10 + place;
+                    place++;
+                }
             }
         }
     }
